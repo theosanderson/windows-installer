@@ -100,7 +100,9 @@ export async function createWindowsInstaller(options: Options): Promise<void> {
   }
 
   metadata.owners = metadata.owners || metadata.authors;
-  metadata.version = convertVersion(metadata.version as string);
+  if (metadata.version) {
+    metadata.version = convertVersion(metadata.version as string);
+  }
   metadata.copyright = metadata.copyright ||
     `Copyright © ${new Date().getFullYear()} ${metadata.authors || metadata.owners}`;
   metadata.additionalFiles = metadata.additionalFiles || [];
